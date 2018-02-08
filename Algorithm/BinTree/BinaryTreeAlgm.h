@@ -6,19 +6,15 @@
 //  Copyright © 2017年 JFChen. All rights reserved.
 //
 
-#ifndef BinTreeAlgorithm_hpp
-#define BinTreeAlgorithm_hpp
-
+#pragma once
 #include <stdio.h>
-
-#endif /* BinTreeAlgorithm_hpp */
 
 typedef char BinNodeDataType;
 
 typedef struct BinNode{
     BinNodeDataType data;
-    BinNode *leftTree;
-    BinNode *rightTree;
+    struct BinNode *leftTree;
+    struct BinNode *rightTree;
 }BinNode;
 
 typedef BinNode* BinTree;
@@ -26,13 +22,13 @@ typedef BinNode* BinTree;
 class BinaryTreeAlgm {
 
 private:
-    BinTree binTree;
+    BinTree _binTree;
     
 public:
-    BinaryTreeAlgm(BinNodeDataType *node, int length);
+    BinaryTreeAlgm(BinNodeDataType *nodePreOrder, int preLen, BinNodeDataType *nodeMidOrder, int midLen);
     ~BinaryTreeAlgm(void);
     
     void preOrderRead(void);
     void midOrderRead(void);
-    void lastOrderReaad(void);
+    void lastOrderRead(void);
 };
