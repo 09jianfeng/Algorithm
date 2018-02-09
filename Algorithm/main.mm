@@ -13,10 +13,10 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
         NSLog(@"Hello, World!");
-        char binPreOrder[18] = "abdglmzehnocfxijk";
-        char binMidOrder[18] = "lgmdzbenhoaxfjikc";
+        char binPreOrder[22] = "abdglm1234zehnocfxijk";
+        char binMidOrder[22] = "lgm3241dzbenhoaxfjikc";
         
-        BinaryTreeAlgm *binTree = new BinaryTreeAlgm(binPreOrder, 17, binMidOrder, 17);
+        BinaryTreeAlgm *binTree = new BinaryTreeAlgm(binPreOrder, 22, binMidOrder, 22);
         binTree->preOrderRead();
         binTree->midOrderRead();
         binTree->lastOrderRead();

@@ -42,18 +42,9 @@ BinNode* createBinTree(BinNodeDataType *nodePreOrder, int len, BinNodeDataType *
     if (righMidOder >= nodeMidOrder + len) {
         righMidOder = nullptr;
     }
-    
-    int lastRigtNodeIndexPre = 0;
-    if (rootDataIndexMid != 0) {
-        for (; lastRigtNodeIndexPre < len; lastRigtNodeIndexPre++) {
-            //中序的根节点的左边就是左子树，右边是右子树
-            if (nodePreOrder[lastRigtNodeIndexPre] == nodeMidOrder[rootDataIndexMid-1]) {
-                break;
-            }
-        }
-    }
+        
     BinNodeDataType *leftPreOder = nodePreOrder + 1;
-    BinNodeDataType *righPreOder = nodePreOrder + lastRigtNodeIndexPre + 1;
+    BinNodeDataType *righPreOder = nodePreOrder + rootDataIndexMid + 1;
     //剩下两个元素的时候
     if (righPreOder >= nodePreOrder + len) {
         righPreOder = nullptr;
@@ -227,8 +218,31 @@ void bintreeLastReadStact(BinNode *tree){
             nodeStack.pop();
         }
         
-        if (node->rightTree) {
-            nodeStack.push(node);
+        //每次回溯的节点的时候，有子节点的节点都需要标记保存
+        while (node->rightTree || node->leftTree) {
+            
+            if (!markStack.empty()) {
+                BinNode *markNode = markStack.top();
+                if (markNode->data == node->data) {
+                    markStack.pop();
+                    
+                    printf("%c",node->data);
+                    node = nodeStack.top();
+                    nodeStack.pop();
+                }else{
+                    markStack.push(node);
+                    nodeStack.push(node);
+                    node = node->rightTree;
+                    nodeStack.push(node);
+                    break;
+                }
+            }else{
+                markStack.push(node);
+                nodeStack.push(node);
+                node = node->rightTree;
+                nodeStack.push(node);
+                break;
+            }
         }
     }
 }
