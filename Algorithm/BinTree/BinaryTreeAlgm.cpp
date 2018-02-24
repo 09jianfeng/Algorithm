@@ -42,7 +42,7 @@ BinNode* createBinTree(BinNodeDataType *nodePreOrder, int len, BinNodeDataType *
     if (righMidOder >= nodeMidOrder + len) {
         righMidOder = nullptr;
     }
-        
+    
     BinNodeDataType *leftPreOder = nodePreOrder + 1;
     BinNodeDataType *righPreOder = nodePreOrder + rootDataIndexMid + 1;
     //剩下两个元素的时候
@@ -218,14 +218,42 @@ void bintreeLastReadStact(BinNode *tree){
             nodeStack.pop();
         }
         
-        //每次回溯的节点的时候，有子节点的节点都需要标记保存
+        //每次回溯节点的时候，有子节点的节点都需要标记保存
         while (node->rightTree || node->leftTree) {
             
+            //回溯的过程中要考虑只有左子树或者只有右子树的情况。
             if (!markStack.empty()) {
                 BinNode *markNode = markStack.top();
+                //只要是回溯的节点，判断是否在mark堆栈里面。
                 if (markNode->data == node->data) {
                     markStack.pop();
                     
+                    printf("%c",node->data);
+                    
+                    if (nodeStack.empty()) {
+                        break;
+                    }
+                    node = nodeStack.top();
+                    nodeStack.pop();
+                }else{
+                    //当节点回溯的过程中，如果出栈的节点没有右子树，直接出栈，并且输出
+                    if (!node->rightTree) {
+                        printf("%c",node->data);
+                        node = nodeStack.top();
+                        nodeStack.pop();
+                    }else{
+                        markStack.push(node);
+                        nodeStack.push(node);
+                        node = node->rightTree;
+                        nodeStack.push(node);
+                        break;
+                    }
+                }
+            }
+            else{
+                
+                //当节点回溯的过程中，如果出栈的节点没有右子树，直接出栈，并且输出
+                if (!node->rightTree) {
                     printf("%c",node->data);
                     node = nodeStack.top();
                     nodeStack.pop();
@@ -236,12 +264,7 @@ void bintreeLastReadStact(BinNode *tree){
                     nodeStack.push(node);
                     break;
                 }
-            }else{
-                markStack.push(node);
-                nodeStack.push(node);
-                node = node->rightTree;
-                nodeStack.push(node);
-                break;
+                
             }
         }
     }
