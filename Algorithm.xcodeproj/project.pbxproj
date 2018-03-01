@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		785F0B7F2045678400BDE146 /* SortAlgm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785F0B7D2045678400BDE146 /* SortAlgm.cpp */; };
 		78784004202A9F510066D8C3 /* LogFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78784000202A9F510066D8C3 /* LogFile.cpp */; };
 		78784005202A9F510066D8C3 /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78784003202A9F510066D8C3 /* log.cpp */; };
 		78784008202A9F6F0066D8C3 /* commonutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78784006202A9F6F0066D8C3 /* commonutils.cpp */; };
@@ -27,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		785F0B7D2045678400BDE146 /* SortAlgm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SortAlgm.cpp; sourceTree = "<group>"; };
+		785F0B7E2045678400BDE146 /* SortAlgm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SortAlgm.hpp; sourceTree = "<group>"; };
 		786D25F01FF33B0A00BDF022 /* Subject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Subject.h; sourceTree = "<group>"; };
 		786D25F11FF33B2B00BDF022 /* Observer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Observer.h; sourceTree = "<group>"; };
 		78783FFD202A9C3E0066D8C3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -54,6 +57,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		784DFD732041161900D2F4F0 /* Sort */ = {
+			isa = PBXGroup;
+			children = (
+				785F0B7E2045678400BDE146 /* SortAlgm.hpp */,
+				785F0B7D2045678400BDE146 /* SortAlgm.cpp */,
+			);
+			path = Sort;
+			sourceTree = "<group>";
+		};
 		78783FFC202A9C3E0066D8C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +109,7 @@
 			children = (
 				78783FFF202A9F130066D8C3 /* Util */,
 				78FCC0FD1FE6BA99000C7EE2 /* Design Pattern */,
+				784DFD732041161900D2F4F0 /* Sort */,
 				78E0A6431E6D0C4900375AF2 /* BinTree */,
 				78E0A63B1E6D0C0700375AF2 /* main.mm */,
 			);
@@ -106,8 +119,8 @@
 		78E0A6431E6D0C4900375AF2 /* BinTree */ = {
 			isa = PBXGroup;
 			children = (
-				78E0A6441E6D0C6F00375AF2 /* BinaryTreeAlgm.cpp */,
 				78E0A6451E6D0C6F00375AF2 /* BinaryTreeAlgm.h */,
+				78E0A6441E6D0C6F00375AF2 /* BinaryTreeAlgm.cpp */,
 			);
 			path = BinTree;
 			sourceTree = "<group>";
@@ -192,6 +205,7 @@
 				78E0A6461E6D0C6F00375AF2 /* BinaryTreeAlgm.cpp in Sources */,
 				78784005202A9F510066D8C3 /* log.cpp in Sources */,
 				78784008202A9F6F0066D8C3 /* commonutils.cpp in Sources */,
+				785F0B7F2045678400BDE146 /* SortAlgm.cpp in Sources */,
 				78784004202A9F510066D8C3 /* LogFile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
