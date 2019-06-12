@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #include "BinaryTreeAlgm.h"
+#include "SortAlgm.hpp"
+#include <iostream>
+
+using namespace std;
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -21,7 +25,14 @@ int main(int argc, const char * argv[]) {
         binTree->lastOrderRead();
          */
         
+        int arr[15] = {4,5,3,4,6,5,34,54,23,65,3,43,7,78,55};
+        int len = 15;
+        SortAlgm *sortAl = new SortAlgm();
+        sortAl->headSort(arr, len);
         
+        for (int i = 0; i < len; i++)
+            cout << arr[i] << ' ';
+        cout << endl;
     }
     return 0;
 }

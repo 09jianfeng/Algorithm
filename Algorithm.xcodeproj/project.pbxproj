@@ -43,6 +43,7 @@
 		78E0A63B1E6D0C0700375AF2 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		78E0A6441E6D0C6F00375AF2 /* BinaryTreeAlgm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinaryTreeAlgm.cpp; sourceTree = "<group>"; };
 		78E0A6451E6D0C6F00375AF2 /* BinaryTreeAlgm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryTreeAlgm.h; sourceTree = "<group>"; };
+		78ED050622B1366A0037F4FB /* SortReadme.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = SortReadme.rtf; sourceTree = "<group>"; };
 		78FCC1051FE6BB57000C7EE2 /* ObserverReadme.rtfd */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; path = ObserverReadme.rtfd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +63,7 @@
 			children = (
 				785F0B7E2045678400BDE146 /* SortAlgm.hpp */,
 				785F0B7D2045678400BDE146 /* SortAlgm.cpp */,
+				78ED050622B1366A0037F4FB /* SortReadme.rtf */,
 			);
 			path = Sort;
 			sourceTree = "<group>";

@@ -14,7 +14,7 @@ class SortAlgm {
 public:
     
     SortAlgm(void);
-    ~SortAlgm(void);
+    virtual ~SortAlgm(void);
     
     //快速排序
     void quickSort(int data[], int length);
@@ -22,4 +22,7 @@ public:
     void mergingSort(int data[], int length);
     //桶排序
     void bucketSort(int data[], int length);
+    //堆排序
+    void headSort(int data[], int length);
+    
 };
