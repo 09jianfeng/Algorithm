@@ -133,7 +133,10 @@ void SortAlgm::bucketSort(int data[], int length){
 }
 
 
-
+/*
+ * 1、父节点跟两个子节点比较，跟大的子节点交换。
+ * 2、检查变化后的子节点，使其符合大/小顶堆的规则。
+ */
 void max_heapify(int arr[], int start, int end) {
     //建立父节点指标和子节点指标
     int dad = start;
@@ -151,10 +154,19 @@ void max_heapify(int arr[], int start, int end) {
     }
 }
 
+
+/*
+ * 1、先建立初始堆
+ * 2、根节点跟最后的一个节点交换。
+ * 3、重建堆，使堆符合大顶堆或者小顶堆。
+ * 4、对剩下还没排序的节点重复2、3步骤。
+ */
 void heap_sort(int arr[], int len) {
-    //初始化，i从最後一个父节点开始调整
+    //初始化，i从最後一个父节点开始调整。调整完所有的父节点，建立初始堆
     for (int i = len / 2 - 1; i >= 0; i--)
         max_heapify(arr, i, len - 1);
+    
+    
     //先将第一个元素和已经排好的元素前一位做交换，再从新调整(刚调整的元素之前的元素)，直到排序完毕
     for (int i = len - 1; i > 0; i--) {
         swap(arr[0], arr[i]);

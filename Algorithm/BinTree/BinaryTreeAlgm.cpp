@@ -10,7 +10,9 @@
 #include "BinaryTreeAlgm.h"
 #include <stack>
 
-//输入二叉树的前序遍历跟后序遍历来创建二叉树。	一定要注意数组的边界条件
+/*
+ * 输入二叉树的前序遍历跟中序遍历的数组来创建二叉树。    一定要注意数组的边界条件
+ */
 BinNode* createBinTree(BinNodeDataType *nodePreOrder, int len, BinNodeDataType *nodeMidOrder){
     //输入异常判断
     if (!nodePreOrder || !nodeMidOrder || len <= 0) {
