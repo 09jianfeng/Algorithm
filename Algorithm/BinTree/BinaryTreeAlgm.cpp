@@ -11,7 +11,12 @@
 #include <stack>
 
 /*
+ * 返回这个二叉树的根节点。
  * 输入二叉树的前序遍历跟中序遍历的数组来创建二叉树。    一定要注意数组的边界条件
+ * 前序遍历的第一个节点是根节点，把中序遍历的数组分为这个根节点的左子树跟右子树。
+ * 根据中序遍历平分的左右子树，把前序遍历的数组也分为左右子树。
+ * 然后不断递归左右子树，子树们返回的根节点就是当前节点的左右子树。
+ * 要注意最后剩下2个节点的时候的边界条件。
  */
 BinNode* createBinTree(BinNodeDataType *nodePreOrder, int len, BinNodeDataType *nodeMidOrder){
     //输入异常判断
@@ -23,7 +28,7 @@ BinNode* createBinTree(BinNodeDataType *nodePreOrder, int len, BinNodeDataType *
     root->data = nodePreOrder[0];//前序的第一个就是根节点
     printf("%c",root->data);
     
-    //递归返回条件
+    //只有一个节点的话返回，递归返回条件
     if (len == 1) {
         root->leftTree = nullptr;
         root->rightTree = nullptr;
@@ -40,16 +45,22 @@ BinNode* createBinTree(BinNodeDataType *nodePreOrder, int len, BinNodeDataType *
     }
     BinNodeDataType *leftMidOder = nodeMidOrder;
     BinNodeDataType *righMidOder = nodeMidOrder + rootDataIndexMid + 1;
-    // 剩下两个元素
+    // 这里要注意右子树的边界条件，如果只有2个节点，右子树是不一定存在的。
     if (righMidOder >= nodeMidOrder + len) {
         righMidOder = nullptr;
     }
     
     BinNodeDataType *leftPreOder = nodePreOrder + 1;
     BinNodeDataType *righPreOder = nodePreOrder + rootDataIndexMid + 1;
-    //剩下两个元素的时候
+    //// 这里要注意右子树的边界条件，如果只有2个节点。右子树是不一定存在的。
     if (righPreOder >= nodePreOrder + len) {
         righPreOder = nullptr;
+    }
+    
+    //剩下两个节点的时候
+    if (rootDataIndexMid == 0) {
+        leftPreOder = nullptr;
+        leftMidOder = nullptr;
     }
     
     BinNode *left = createBinTree(leftPreOder, rootDataIndexMid, leftMidOder);
@@ -73,6 +84,9 @@ BinaryTreeAlgm::~BinaryTreeAlgm(){
 }
 
 #pragma mark - 前序遍历
+/*
+ * 递归实现的方法简单。
+ */
 void bintreePreReadRecursion(BinNode *tree){
     if (!tree) {
         return;
