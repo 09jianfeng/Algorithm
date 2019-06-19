@@ -119,6 +119,7 @@ void bintreePreReadStack(BinNode *tree){
         
         node = nodeStack.top();
         nodeStack.pop();
+        //如果右子树为空，就不断出堆栈。直到右子树不为空。
         while (!nodeStack.empty() && !node->rightTree) {
             node = nodeStack.top();
             nodeStack.pop();
@@ -174,6 +175,7 @@ void bintreeMidReadStack(BinNode *tree){
         node = nodeStack.top();
         nodeStack.pop();
         printf("%c",node->data);
+        //如果右子树为空，就不断出堆栈。直到右子树不为空。
         while (!nodeStack.empty() && !node->rightTree) {
             node = nodeStack.top();
             nodeStack.pop();
@@ -206,6 +208,8 @@ void bintreeLastReadRecursion(BinNode *tree){
     printf("%c",tree->data);
 }
 
+
+//后序遍历需要额外引入堆栈保持状态。
 void bintreeLastReadStact(BinNode *tree){
     if (!tree) {
         return;
@@ -285,6 +289,8 @@ void bintreeLastReadStact(BinNode *tree){
         }
     }
 }
+
+
 
 void BinaryTreeAlgm::lastOrderRead(void){
     printf("\nlastOrderRead: ");
