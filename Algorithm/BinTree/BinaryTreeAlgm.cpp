@@ -97,7 +97,8 @@ void bintreePreReadRecursion(BinNode *tree){
 }
 
 /*
- * 前序是入栈的时候打印
+ * 前序是入栈的时候打印。
+ * 不断入栈左子树，入完了左子树。赋值右子树，作为下一棵树进入下一次循环。
  */
 void bintreePreReadStack(BinNode *tree){
     if (!tree) {
@@ -105,29 +106,22 @@ void bintreePreReadStack(BinNode *tree){
     }
     
     std::stack<BinNode *> nodeStack;
-    nodeStack.push(tree);
     BinNode *node = tree;
-    while (!nodeStack.empty()) {
+    while (!nodeStack.empty() || node) {
         //不断入堆左子树
+        //边打印边入栈，以后还要借助这些根节点，进入右子树
         while (node) {
             printf("%c",node->data);
+            
+            nodeStack.push(node);
             node = node->leftTree;
-            if (node) {
-                nodeStack.push(node);
-            }
         }
         
-        node = nodeStack.top();
-        nodeStack.pop();
-        //如果右子树为空，就不断出堆栈。直到右子树不为空。
-        while (!nodeStack.empty() && !node->rightTree) {
+        //只要堆栈不为空，就继续. 左子树遍历完了，就该轮到右子树作为根节点继续了。
+        if (!nodeStack.empty()) {
             node = nodeStack.top();
             nodeStack.pop();
-        }
-        
-        node = node->rightTree;
-        if (node) {
-            nodeStack.push(node);
+            node = node->rightTree;
         }
     }
 }
@@ -153,7 +147,8 @@ void bintreeMidReadRecursion(BinNode *tree){
 }
 
 /*
- * 中序是出栈的时候打印
+ * 中序是出栈的时候打印。 算法主体跟前序遍历的主体一样。
+ * 不断入栈左子树，入完了左子树。赋值右子树，作为下一棵树进入下一次循环。
  */
 void bintreeMidReadStack(BinNode *tree){
     if (!tree) {
@@ -161,30 +156,24 @@ void bintreeMidReadStack(BinNode *tree){
     }
     
     std::stack<BinNode *> nodeStack;
-    nodeStack.push(tree);
     BinNode *node = tree;
-    while (!nodeStack.empty()) {
+    while (!nodeStack.empty() || node) {
         //不断入堆左子树
+        //边打印边入栈，以后还要借助这些根节点，进入右子树
         while (node) {
-            node = node->leftTree;
-            if (node) {
-                nodeStack.push(node);
-            }
-        }
-        
-        node = nodeStack.top();
-        nodeStack.pop();
-        printf("%c",node->data);
-        //如果右子树为空，就不断出堆栈。直到右子树不为空。
-        while (!nodeStack.empty() && !node->rightTree) {
-            node = nodeStack.top();
-            nodeStack.pop();
-            printf("%c",node->data);
-        }
-        
-        node = node->rightTree;
-        if (node) {
             nodeStack.push(node);
+            node = node->leftTree;
+        }
+        
+        //只要堆栈不为空，就继续. 左子树遍历完了，就该轮到右子树作为根节点继续了。
+        if (!nodeStack.empty()) {
+            
+            node = nodeStack.top();
+            
+            //中序遍历是在出栈的时候打印。
+            printf("%c",node->data);
+            nodeStack.pop();
+            node = node->rightTree;
         }
     }
 }
@@ -209,87 +198,58 @@ void bintreeLastReadRecursion(BinNode *tree){
 }
 
 
-//后序遍历需要额外引入堆栈保持状态。
-void bintreeLastReadStact(BinNode *tree){
-    if (!tree) {
+//后序遍历
+/*
+ 后序遍历递归定义：先左子树，后右子树，再根节点。后序遍历的难点在于：需要判断上次访问的节点是位于左子树，还是右子树。
+ 若是位于左子树，则需跳过根节点，先进入右子树，再回头访问根节点；
+ 若是位于右子树，则直接访问根节点。
+ */
+void bintreeLastReadStact(BinNode* root)
+{
+    if (root == NULL)
         return;
+    std::stack<BinNode*> s;
+    //pCur:当前访问节点，pLastVisit:上次访问节点
+    BinNode* pCur, *pLastVisit;
+    //pCur = root;
+    pCur = root;
+    pLastVisit = NULL;
+    //先把pCur移动到左子树最下边
+    while (pCur)
+    {
+        s.push(pCur);
+        pCur = pCur->leftTree;
     }
-    
-    std::stack<BinNode *> nodeStack;
-    std::stack<BinNode *> markStack;
-    
-    nodeStack.push(tree);
-    BinNode *node = tree;
-    while (!nodeStack.empty()) {
-        //不断入堆左子树
-        while (node) {
-            node = node->leftTree;
-            if (node) {
-                nodeStack.push(node);
-            }
+    while (!s.empty())
+    {
+        //走到这里，pCur都是空，并已经遍历到左子树底端(看成扩充二叉树，则空，亦是某棵树的左孩子)
+        pCur = s.top();
+        s.pop();
+        //一个根节点被访问的前提是：无右子树或右子树已被访问过
+        if (pCur->rightTree == NULL || pCur->rightTree == pLastVisit)
+        {
+            printf("%c",pCur->data);
+            //修改最近被访问的节点
+            pLastVisit = pCur;
         }
-        
-        node = nodeStack.top();
-        nodeStack.pop();
-        while (!nodeStack.empty() && !node->rightTree) {
-            printf("%c",node->data);
-            
-            node = nodeStack.top();
-            nodeStack.pop();
-        }
-        
-        //每次回溯节点的时候，有子节点的节点都需要标记保存
-        while (node->rightTree || node->leftTree) {
-            
-            //回溯的过程中要考虑只有左子树或者只有右子树的情况。
-            if (!markStack.empty()) {
-                BinNode *markNode = markStack.top();
-                //只要是回溯的节点，判断是否在mark堆栈里面。
-                if (markNode->data == node->data) {
-                    markStack.pop();
-                    
-                    printf("%c",node->data);
-                    
-                    if (nodeStack.empty()) {
-                        break;
-                    }
-                    node = nodeStack.top();
-                    nodeStack.pop();
-                }else{
-                    //当节点回溯的过程中，如果出栈的节点没有右子树，直接出栈，并且输出
-                    if (!node->rightTree) {
-                        printf("%c",node->data);
-                        node = nodeStack.top();
-                        nodeStack.pop();
-                    }else{
-                        markStack.push(node);
-                        nodeStack.push(node);
-                        node = node->rightTree;
-                        nodeStack.push(node);
-                        break;
-                    }
-                }
-            }
-            else{
-                
-                //当节点回溯的过程中，如果出栈的节点没有右子树，直接出栈，并且输出
-                if (!node->rightTree) {
-                    printf("%c",node->data);
-                    node = nodeStack.top();
-                    nodeStack.pop();
-                }else{
-                    markStack.push(node);
-                    nodeStack.push(node);
-                    node = node->rightTree;
-                    nodeStack.push(node);
-                    break;
-                }
-                
+        /*这里的else语句可换成带条件的else if:
+         else if (pCur->lchild == pLastVisit)//若左子树刚被访问过，则需先进入右子树(根节点需再次入栈)
+         因为：上面的条件没通过就一定是下面的条件满足。仔细想想！
+         */
+        else
+        {
+            //根节点再次入栈
+            s.push(pCur);
+            //进入右子树，且可肯定右子树一定不为空
+            pCur = pCur->rightTree;
+            while (pCur)
+            {
+                s.push(pCur);
+                pCur = pCur->leftTree;
             }
         }
     }
 }
-
 
 
 void BinaryTreeAlgm::lastOrderRead(void){
