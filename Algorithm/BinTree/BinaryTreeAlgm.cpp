@@ -214,12 +214,14 @@ void bintreeLastReadStact(BinNode* root)
     //pCur = root;
     pCur = root;
     pLastVisit = NULL;
+    
     //先把pCur移动到左子树最下边
     while (pCur)
     {
         s.push(pCur);
         pCur = pCur->leftTree;
     }
+    
     while (!s.empty())
     {
         //走到这里，pCur都是空，并已经遍历到左子树底端(看成扩充二叉树，则空，亦是某棵树的左孩子)
@@ -232,6 +234,7 @@ void bintreeLastReadStact(BinNode* root)
             //修改最近被访问的节点
             pLastVisit = pCur;
         }
+        
         /*这里的else语句可换成带条件的else if:
          else if (pCur->lchild == pLastVisit)//若左子树刚被访问过，则需先进入右子树(根节点需再次入栈)
          因为：上面的条件没通过就一定是下面的条件满足。仔细想想！
