@@ -28,6 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		782EAB2A233613D500B54F49 /* FruitStream.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FruitStream.hpp; sourceTree = "<group>"; };
 		785F0B7D2045678400BDE146 /* SortAlgm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SortAlgm.cpp; sourceTree = "<group>"; };
 		785F0B7E2045678400BDE146 /* SortAlgm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SortAlgm.hpp; sourceTree = "<group>"; };
 		786D25F01FF33B0A00BDF022 /* Subject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Subject.h; sourceTree = "<group>"; };
@@ -58,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		782EAB28233613BA00B54F49 /* C++Practic */ = {
+			isa = PBXGroup;
+			children = (
+				782EAB2A233613D500B54F49 /* FruitStream.hpp */,
+			);
+			path = "C++Practic";
+			sourceTree = "<group>";
+		};
 		784DFD732041161900D2F4F0 /* Sort */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +118,7 @@
 		78E0A63A1E6D0C0700375AF2 /* Algorithm */ = {
 			isa = PBXGroup;
 			children = (
+				782EAB28233613BA00B54F49 /* C++Practic */,
 				78783FFF202A9F130066D8C3 /* Util */,
 				78FCC0FD1FE6BA99000C7EE2 /* Design Pattern */,
 				784DFD732041161900D2F4F0 /* Sort */,
@@ -186,6 +196,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 78E0A62F1E6D0C0700375AF2;

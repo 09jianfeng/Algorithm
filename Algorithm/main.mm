@@ -10,29 +10,39 @@
 #include "BinaryTreeAlgm.h"
 #include "SortAlgm.hpp"
 #include <iostream>
+#include "FruitStream.hpp"
 
 using namespace std;
 
+void testCPlusPlus(){
+    testFruit();
+}
+
+void testAlgorithm(){
+    /* binTree
+     char binPreOrder[22] = "abdglm1234zehnocfxijk";
+     char binMidOrder[22] = "lgm3241dzbenhoaxfjikc";
+     
+     BinaryTreeAlgm *binTree = new BinaryTreeAlgm(binPreOrder, 21, binMidOrder, 21);
+     binTree->preOrderRead();
+     binTree->midOrderRead();
+     binTree->lastOrderRead();
+     */
+    
+    int arr[15] = {4,5,3,4,6,5,34,54,23,65,3,43,7,78,55};
+    int len = 15;
+    SortAlgm *sortAl = new SortAlgm();
+    sortAl->headSort(arr, len);
+    
+    for (int i = 0; i < len; i++)
+        cout << arr[i] << ' ';
+    cout << endl;
+}
+
 int main(int argc, const char * argv[]) {
+    
     @autoreleasepool {
-        /* binTree
-        char binPreOrder[22] = "abdglm1234zehnocfxijk";
-        char binMidOrder[22] = "lgm3241dzbenhoaxfjikc";
-        
-        BinaryTreeAlgm *binTree = new BinaryTreeAlgm(binPreOrder, 21, binMidOrder, 21);
-        binTree->preOrderRead();
-        binTree->midOrderRead();
-        binTree->lastOrderRead();
-         */
-        
-        int arr[15] = {4,5,3,4,6,5,34,54,23,65,3,43,7,78,55};
-        int len = 15;
-        SortAlgm *sortAl = new SortAlgm();
-        sortAl->headSort(arr, len);
-        
-        for (int i = 0; i < len; i++)
-            cout << arr[i] << ' ';
-        cout << endl;
+        testCPlusPlus();
     }
     return 0;
 }
