@@ -11,14 +11,15 @@
 #include "SortAlgm.hpp"
 #include <iostream>
 #include "FruitStream.hpp"
+#include "interview_algorithm.hpp"
 
 using namespace std;
 
-void testCPlusPlus(){
+void testCPlusPlusDesign(){
     testFruit();
 }
 
-void testAlgorithm(){
+void testNormalAlgorithm(){
     /* binTree
      char binPreOrder[22] = "abdglm1234zehnocfxijk";
      char binMidOrder[22] = "lgm3241dzbenhoaxfjikc";
@@ -39,10 +40,19 @@ void testAlgorithm(){
     cout << endl;
 }
 
+void testAlgorithm(){
+    Solution so;
+    std::vector<int> num_vec = {1,2,3,4,5,1,2,3,4};
+    int singleValue = so.singleNumber(num_vec);
+    printf("\n siglevalue:%d \n", singleValue);
+}
+
 int main(int argc, const char * argv[]) {
     
     @autoreleasepool {
-        testCPlusPlus();
+        //testCPlusPlus();
+        
+        testAlgorithm();
     }
     return 0;
 }
