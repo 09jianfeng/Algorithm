@@ -41,10 +41,8 @@ void testNormalAlgorithm(){
 }
 
 void testAlgorithm(){
-    Solution so;
-    std::vector<int> num_vec = {1,2,3,4,5,1,2,3,4};
-    int singleValue = so.singleNumber(num_vec);
-    printf("\n siglevalue:%d \n", singleValue);
+    arrayPermutation pur;
+    pur.testPermutation();
 }
 
 int main(int argc, const char * argv[]) {

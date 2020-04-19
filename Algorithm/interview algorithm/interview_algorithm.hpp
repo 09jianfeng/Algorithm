@@ -133,7 +133,28 @@ public:
 class arrayPermutation {
 public:
     
+    void fullPermutation(char a[],int length,int k){
+        int i;
+        if(k == length - 1){
+            printf("%s",a);                        //打印字符数组a
+            printf("\n");
+            return;
+        }
+        char t;
+        for(i = k; i < length; i++){
+            //试探
+            { t = a[k]; a[k] = a[i]; a[i] = t; }
+            fullPermutation(a, length,k+1);
+            //回溯 :把上一级改变的再改变过来，防止下次递归改变a的值时，已经不是初始的a
+            { t = a[k]; a[k] = a[i]; a[i] = t; }
+        }
+    }
     
+    void testPermutation(){
+        char a[4] = {'A', 'B', 'C'};               //初始化字符数组a
+        fullPermutation(a, 3, 0);
+    }
+
 };
 
 #endif /* interview_algorithm_hpp */
