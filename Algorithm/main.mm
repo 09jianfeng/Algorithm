@@ -15,7 +15,7 @@
 
 using namespace std;
 
-void testCPlusPlusDesign(){
+void testCPlusPlus(){
     testFruit();
 }
 
@@ -48,9 +48,8 @@ void testAlgorithm(){
 int main(int argc, const char * argv[]) {
     
     @autoreleasepool {
-        //testCPlusPlus();
-        
-        testAlgorithm();
+        testCPlusPlus();
+//        testAlgorithm();
     }
     return 0;
 }
